@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import './SearchBar.css';
+import '../App.css'; // Global CSS file
+
 
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
