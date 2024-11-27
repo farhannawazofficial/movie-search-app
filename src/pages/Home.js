@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { fetchMovies } from '../api';
+import { motion } from 'framer-motion';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import MovieCard from '../components/MovieCard';
@@ -24,11 +25,16 @@ const Home = () => {
       <Header />
       <SearchBar onSearch={handleSearch} />
       {error && <p className="error">{error}</p>}
-      <div className="movie-list">
+      <motion.div
+        className="movie-list"
+        initial={{ opacity: 0 }} // List's starting state
+        animate={{ opacity: 1 }} // Final state
+        transition={{ duration: 0.5 }} // Animation duration
+      >
         {movies.map((movie) => (
           <MovieCard key={movie.imdbID} movie={movie} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

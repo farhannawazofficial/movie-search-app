@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import './SearchBar.css';
 
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
@@ -10,15 +12,26 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="search-bar">
+    <motion.div
+      className="search-bar"
+      initial={{ scale: 0.9, opacity: 0 }} // Starting state
+      animate={{ scale: 1, opacity: 1 }} // Final state
+      transition={{ duration: 0.4, ease: "easeOut" }} // Smooth scaling
+    >
       <input
         type="text"
         placeholder="Search for movies..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+      <motion.button
+        whileHover={{ scale: 1.1 }} // Hover animation
+        whileTap={{ scale: 0.9 }}   // Tap animation
+        onClick={handleSearch}
+      >
+        Search
+      </motion.button>
+    </motion.div>
   );
 };
 
